@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudyVault - Organize suas Aulas</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Cabeçalho com navegação -->
+    <header class="site-header">
+        <div class="container">
+            <h1 class="logo"> StudyVault</h1>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#inicio">Início</a></li>
+                    <li><a href="#materias">Matérias</a></li>
+                    <li><a href="#sobre">Sobre</a></li>
+                    <li><a href="#contato">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Seção Inicial / Hero -->
+        <section id="inicio" class="hero">
+            <div class="container">
+                <h2>Organize suas Aulas e Atividades</h2>
+                <p>Guarde materiais, PDFs e atividades por disciplina. Tudo em um só lugar, simples e rápido.</p>
+                <a href="#materias" class="btn btn-primary">Ver Minhas Matérias</a>
+            </div>
+        </section>
+
+        <!-- Seção de Matérias -->
+        <section id="materias" class="materias-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Minhas Matérias</h2>
+                    <button id="btnNovaMateria" class="btn btn-primary">+ Nova Matéria</button>
+                </div>
+
+                <div id="listaMaterias" class="materias-grid">
+                    <!-- Cards de matérias serão inseridos aqui via JS -->
+                </div>
+
+                <p id="semMaterias" class="mensagem-vazio">Nenhuma matéria cadastrada ainda. Clique em "Nova Matéria" para começar!</p>
+            </div>
+        </section>
+
+        <!-- Seção Sobre -->
+        <section id="sobre" class="sobre-section">
+            <div class="container">
+                <h2>Sobre o StudyVault</h2>
+                <article class="sobre-conteudo">
+                    <p>O <strong>StudyVault</strong> é uma ferramenta simples para estudantes organizarem sua vida acadêmica. Crie pastas para cada matéria, armazene atividades em PDF e acompanhe quando cada arquivo foi adicionado.</p>
+                    <p>Tudo funciona diretamente no seu navegador, sem necessidade de instalar programas ou criar contas.</p>
+                    <ul class="recursos-lista">
+                        <li>Crie disciplinas com nome, carga horária e professor</li>
+                        <li>Anexe arquivos PDF às suas atividades</li>
+                        <li>Data automática de registro de cada entrada</li>
+                        <li>Dados salvos localmente no navegador</li>
+                    </ul>
+                </article>
+            </div>
+        </section>
+
+        <!-- Seção de Contato -->
+        <section id="contato" class="contato-section">
+            <div class="container">
+                <h2>Fale Conosco</h2>
+                <p>Tem dúvidas ou sugestões? Envie uma mensagem!</p>
+
+                <form id="formContato" class="formulario">
+                    <div class="form-grupo">
+                        <label for="nomeContato">Nome:</label>
+                        <input type="text" id="nomeContato" name="nome" placeholder="Seu nome completo" required>
+                    </div>
+
+                    <div class="form-grupo">
+                        <label for="emailContato">E-mail:</label>
+                        <input type="email" id="emailContato" name="email" placeholder="seu@email.com" required>
+                    </div>
+
+                    <div class="form-grupo">
+                        <label for="assuntoContato">Assunto:</label>
+                        <select id="assuntoContato" name="assunto" required>
+                            <option value="">Selecione...</option>
+                            <option value="duvida">Dúvida</option>
+                            <option value="sugestao">Sugestão</option>
+                            <option value="problema">Problema</option>
+                            <option value="outro">Outro</option>
+                        </select>
+                    </div>
+
+                    <div class="form-grupo">
+                        <label for="mensagemContato">Mensagem:</label>
+                        <textarea id="mensagemContato" name="mensagem" rows="5" placeholder="Escreva sua mensagem aqui..." required></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Enviar Mensagem</button>
+                </form>
+
+                <div id="msgContato" class="mensagem-feedback"></div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Rodapé -->
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2026 StudyVault - Trabalho Final de Desenvolvimento Web</p>
+            <p>Desenvolvido com HTML, CSS e JavaScript</p>
+        </div>
+    </footer>
+
+    <!-- Modal: Nova Matéria -->
+    <div id="modalMateria" class="modal">
+        <div class="modal-conteudo">
+            <div class="modal-header">
+                <h3>Adicionar Nova Matéria</h3>
+                <button class="btn-fechar" onclick="fecharModal('modalMateria')">&times;</button>
+            </div>
+            <form id="formMateria" class="formulario">
+                <div class="form-grupo">
+                    <label for="nomeMateria">Nome da Matéria:</label>
+                    <input type="text" id="nomeMateria" name="nomeMateria" placeholder="Ex: Desenvolvimento Web" required>
+                </div>
+                <div class="form-grupo">
+                    <label for="horasMateria">Carga Horária (horas):</label>
+                    <input type="number" id="horasMateria" name="horasMateria" placeholder="Ex: 60" min="1" required>
+                </div>
+                <div class="form-grupo">
+                    <label for="professorMateria">Nome do Professor:</label>
+                    <input type="text" id="professorMateria" name="professorMateria" placeholder="Ex: Douglas Lopes" required>
+                </div>
+                <div class="modal-acoes">
+                    <button type="button" class="btn btn-secundario" onclick="fecharModal('modalMateria')">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Salvar Matéria</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal: Pasta da Matéria (Atividades) -->
+    <div id="modalPasta" class="modal">
+        <div class="modal-conteudo modal-grande">
+            <div class="modal-header">
+                <h3 id="tituloPasta">Matéria</h3>
+                <button class="btn-fechar" onclick="fecharModal('modalPasta')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="pasta-info">
+                    <p><strong>Carga Horária:</strong> <span id="infoHoras">-</span> horas</p>
+                    <p><strong>Professor:</strong> <span id="infoProfessor">-</span></p>
+                </div>
+
+                <div class="pasta-acoes">
+                    <button id="btnNovaAtividade" class="btn btn-primary">+ Nova Atividade</button>
+                    <button id="btnExcluirMateria" class="btn btn-perigo">🗑 Excluir Matéria</button>
+                </div>
+
+                <h4>Atividades e Arquivos</h4>
+                <div id="listaAtividades" class="atividades-lista">
+                    <!-- Atividades inseridas via JS -->
+                </div>
+                <p id="semAtividades" class="mensagem-vazio">Nenhuma atividade cadastrada nesta matéria.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Nova Atividade -->
+    <div id="modalAtividade" class="modal">
+        <div class="modal-conteudo">
+            <div class="modal-header">
+                <h3>Adicionar Atividade</h3>
+                <button class="btn-fechar" onclick="fecharModal('modalAtividade')">&times;</button>
+            </div>
+            <form id="formAtividade" class="formulario">
+                <div class="form-grupo">
+                    <label for="tituloAtividade">Título:</label>
+                    <input type="text" id="tituloAtividade" name="tituloAtividade" placeholder="Ex: Trabalho Final" required>
+                </div>
+                <div class="form-grupo">
+                    <label for="descricaoAtividade">Descrição:</label>
+                    <textarea id="descricaoAtividade" name="descricaoAtividade" rows="3" placeholder="Descreva a atividade..."></textarea>
+                </div>
+                <div class="form-grupo">
+                    <label for="arquivoAtividade">Arquivo (PDF):</label>
+                    <input type="file" id="arquivoAtividade" name="arquivoAtividade" accept=".pdf">
+                    <small class="form-ajuda">Apenas PDFs. Tamanho máximo recomendado: 2MB.</small>
+                </div>
+                <div class="modal-acoes">
+                    <button type="button" class="btn btn-secundario" onclick="fecharModal('modalAtividade')">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Salvar Atividade</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Toast/Mensagem de feedback -->
+    <div id="toast" class="toast"></div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
