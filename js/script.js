@@ -1,14 +1,7 @@
-/* ============================================
-   STUDYVAULT - JAVASCRIPT
-   Trabalho Final - Desenvolvimento Web
-   ============================================ */
 
-// --------------------------------------------
-// VARIÁVEIS GLOBAIS E ESTADO
-// --------------------------------------------
 let materias = [];
 let atividades = [];
-let materiaAtual = null; // ID da matéria aberta no modal
+let materiaAtual = null; 
 
 // Chaves do localStorage
 const KEY_MATERIAS = 'studyvault_materias';
